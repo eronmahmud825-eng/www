@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Called Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            padding: 20px;
+        }
+        
+        form {
+            max-width: 400px;
+            margin: auto;
+        }
+        
+        label,
+        select,
+        input {
+            display: block;
+            margin: 10px 0;
+        }
+        
+        button {
+            padding: 10px 20px;
+            margin: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Called Player Form</h1>
+    <form id="playerForm">
+        <!-- Team Selection -->
+        <label for="team">Select Team:</label>
+        <select id="team" name="team" required>
+      <option value="">--Choose a team--</option>
+      <option value="manchester4.html">Manchester City</option>
+      <option value="realmadrid4.html">Real Madrid</option>
+      <option value="psg4.html">Paris Saint German</option>
+    </select>
+
+        <!-- Player textboxes -->
+        <h3>Enter 15 Players:</h3>
+        <div id="playersBox">
+            <script>
+                for (let i = 1; i <= 15; i++) {
+                    document.write(`<input type="text" name="player${i}" placeholder="Player ${i}">`);
+                }
+            </script>
+        </div>
+
+        <button type="submit">Submit</button>
+        <button type="reset" id="resetBtn">Reset</button>
+    </form>
+
+    <script>
+        document.getElementById("playerForm").addEventListener("submit", function(e) {
+            e.preventDefault();
+
+            const inputs = document.querySelectorAll("#playersBox input");
+            let players = [];
+            inputs.forEach(input => {
+                if (input.value.trim() !== "") players.push(input.value.trim());
+            });
+
+            if (players.length < 14) {
+                alert("PLEASE FILL THE BOX (at least 14 players)");
+                return;
+            }
+
+            // Save players into localStorage
+            localStorage.setItem("players", JSON.stringify(players));
+
+            // Redirect to team page
+            const teamPage = document.getElementById("team").value;
+            if (teamPage) {
+                window.location.href = teamPage;
+            }
+        });
+
+        // Clear localStorage on reset
+        document.getElementById("resetBtn").addEventListener("click", function() {
+            localStorage.removeItem("players");
+        });
+    </script>
+</body>
+
+</html>

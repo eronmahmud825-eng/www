@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Called Player</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f4f4f4;
+            text-align: center;
+        }
+        
+        h1 {
+            background: #2c3e50;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        
+        form {
+            margin: 20px auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            width: 50%;
+            box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        }
+        
+        select,
+        input {
+            margin: 8px;
+            padding: 10px;
+            width: 80%;
+            border-radius: 6px;
+            border: 1px solid #ccc;
+        }
+        
+        button {
+            margin: 10px;
+            padding: 12px 25px;
+            border: none;
+            border-radius: 8px;
+            cursor: pointer;
+            background: #27ae60;
+            color: white;
+            font-size: 16px;
+        }
+        
+        button:hover {
+            background: #1e8449;
+        }
+        
+        .error {
+            color: red;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Called Player Form</h1>
+    <form id="playerForm" action="mailto:eronmahmud825@gmail.com" method="post" enctype="text/plain">
+        <label><b>TEAM:</b></label><br>
+        <select name="team" required>
+      <option value="">-- Select a Team --</option>
+      <option value="Manchester City">Manchester City</option>
+      <option value="Real Madrid">Real Madrid</option>
+      <option value="Paris Saint-Germain">Paris Saint-Germain</option>
+    </select><br><br>
+
+        <h3>Enter 15 Players:</h3>
+        <div id="playersBox">
+            <input type="text" name="player1" placeholder="Player 1"><br>
+            <input type="text" name="player2" placeholder="Player 2"><br>
+            <input type="text" name="player3" placeholder="Player 3"><br>
+            <input type="text" name="player4" placeholder="Player 4"><br>
+            <input type="text" name="player5" placeholder="Player 5"><br>
+            <input type="text" name="player6" placeholder="Player 6"><br>
+            <input type="text" name="player7" placeholder="Player 7"><br>
+            <input type="text" name="player8" placeholder="Player 8"><br>
+            <input type="text" name="player9" placeholder="Player 9"><br>
+            <input type="text" name="player10" placeholder="Player 10"><br>
+            <input type="text" name="player11" placeholder="Player 11"><br>
+            <input type="text" name="player12" placeholder="Player 12"><br>
+            <input type="text" name="player13" placeholder="Player 13"><br>
+            <input type="text" name="player14" placeholder="Player 14"><br>
+            <input type="text" name="player15" placeholder="Player 15"><br>
+        </div>
+
+        <p id="errorMsg" class="error"></p>
+
+        <button type="submit">SUBMIT</button>
+        <button type="reset">RESET</button>
+    </form>
+
+    <script>
+        document.getElementById("playerForm").addEventListener("submit", function(e) {
+            let inputs = document.querySelectorAll("#playersBox input");
+            let filled = 0;
+            inputs.forEach(input => {
+                if (input.value.trim() !== "") filled++;
+            });
+
+            if (filled < 14) {
+                e.preventDefault();
+                document.getElementById("errorMsg").innerText = "⚠️ Please fill the box (at least 14 players)";
+            }
+        });
+    </script>
+</body>
+
+</html>

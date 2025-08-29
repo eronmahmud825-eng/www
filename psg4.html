@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Paris Saint Germain Players</title>
+</head>
+
+<body>
+    <h1>Paris Saint Germain Players</h1>
+    <table border="1" cellpadding="10" id="playersTable">
+        <tr>
+            <th>#</th>
+            <th>Player Name</th>
+        </tr>
+    </table>
+
+    <script>
+        const players = JSON.parse(localStorage.getItem("players")) || [];
+        const table = document.getElementById("playersTable");
+        players.forEach((player, index) => {
+            let row = table.insertRow();
+            row.insertCell(0).innerText = index + 1;
+            row.insertCell(1).innerText = player;
+        });
+    </script>
+</body>
+
+</html>

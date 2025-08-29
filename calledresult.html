@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Called Player Result</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        
+        table {
+            border-collapse: collapse;
+            width: 80%;
+            margin-top: 20px;
+        }
+        
+        th,
+        td {
+            border: 1px solid black;
+            padding: 8px;
+            text-align: center;
+        }
+        
+        th {
+            background: #ddd;
+        }
+    </style>
+</head>
+
+<body>
+    <h1>Called Player Result</h1>
+    <h2 id="teamName"></h2>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Player Name</th>
+            </tr>
+        </thead>
+        <tbody id="playerTable"></tbody>
+    </table>
+
+    <script>
+        // Get data from localStorage
+        let team = localStorage.getItem("team");
+        let players = JSON.parse(localStorage.getItem("players"));
+
+        document.getElementById("teamName").textContent = "Team: " + team;
+
+        let tableBody = document.getElementById("playerTable");
+        players.forEach((player, index) => {
+            if (player.trim() !== "") {
+                let row = `<tr><td>${index + 1}</td><td>${player}</td></tr>`;
+                tableBody.innerHTML += row;
+            }
+        });
+    </script>
+</body>
+
+</html>
